@@ -1,0 +1,8 @@
+# Optimal-Treatment-of-Tumor-Growth-Using-Individual-Doses-of-Chemotherapy
+Matlab source code for paper Optimal Treatment of Tumor Growth Using Individual Doses of Chemotherapy
+
+Authors: Martin Dodek, Zuzana Vitková, Anton Vitko, Jarmila Pavlovičová and Eva Miklovičová
+
+Abstract:
+
+This study analyzes a nonlinear model of tumor growth dynamics, describing the interactions between tumor cells, immune system cells, and a chemotherapeutic drug. The primary objective is to identify a locally stable steady state corresponding to cancer remission and map its stability region in the absence of treatment. This is achieved using two approaches: first, the Lyapunov method, which provides a conservative, analytically tractable ellipsoidal region; and second, a numerical method based on iterative grid-searching, yielding a more accurate but complex and non-convex region. Additionally, we propose an optimal chemotherapy dosing protocol that minimizes the total drug amount and minimally disrupts the immune system while ensuring that the system's states move toward the natural stability region of cancer remission. To maintain remission post-treatment, a death penalty was applied if the terminal state fell outside the natural stability region defined by the ellipsoid inequality. Unlike other techniques in the literature, we avoid continuous drug infusion and instead consider the more practical approach of repeated chemotherapy administration as a finite sequence of individual doses (boluses). The results demonstrate that the proposed method can stabilize tumor growth accros various initial conditions and induce cancer remission within a few chemotherapy doses without the need for prolonged continuously adjusted treatment.
