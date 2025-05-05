@@ -41,15 +41,11 @@ P=P*0.3e-9;
 % (maximizing the time derivative subject to inequality constraint)
 
 
-J_fun=@(x)(-get_V_dot_Song_((x+x0)',model,x0',P));
+J_fun=@(x)(-get_V_dot_Song_((x+x0'),model,x0',P));
 
-initialX=1.5*chol(inv(P))*randn(3,10000);
-initialX=initialX(:,0.5*diag(initialX'*P*initialX)<=1)
+x =x0' + fmincon(J_fun,1.5*chol(inv(P))*randn(3,1),[],[],[],[],[],[],@(x)Lyap_con((x+x0)',x0',P));
 
-options = optimoptions('ga','FunctionTolerance',1e-50,'MaxGenerations',20,'Display','iter','PopulationSize',size(initialX,2),'InitialPopulationMatrix',initialX');
-x =x0 + ga(J_fun,3,[],[],[],[],[],[],@(x)Lyap_con((x+x0)',x0',P),options);
-
--J_fun(x-x0)
+-J_fun(x-x0')
 
 
 %% Plotting the ellipsoid stability region
@@ -159,8 +155,7 @@ T0=1*1e8;
 % T0=5*1e8;
 
 J_fun=@(D)J_Song_terminal_stability(D,TD,tf,Ts,w_N,w_L,w_T,w_u,w_s,P,Nr,Lr,Tr,N0,L0,T0,model);
-options = optimoptions('ga','Display','iter','MaxGenerations',20);
-D = ga(J_fun,nD,[],[],[],[],zeros(nD,1),5*ones(nD,1),[],options);
+D = fmincon(J_fun,ones(nD,1),[],[],[],[],zeros(nD,1),5*ones(nD,1),[]);
 J_fun(D)
 
 %% Simulating and plotting the treatment response
